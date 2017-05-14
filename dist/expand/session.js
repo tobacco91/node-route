@@ -24,13 +24,17 @@ session = {
     type : redis,
     key : random,
     value : uerinfo
+    time: ms
 }
 */
 var set_session = function set_session(session) {
+    session.time = session.time || 1 * 1000 * 3600;
     switch (session.type) {
         case 'redis':
-            console.log('redis');
             createRedisClient().hset(session.from, session.key, session.value);
+            setTimeout(function () {
+                createRedisClient().hdel(session.from, session.key);
+            }, session.time);
             break;
         case 'file':
             break;
@@ -46,7 +50,7 @@ session = {
 var get_session = function get_session(session) {
     return new Promise(function (resolve, reject) {
         switch (session.type) {
-            case 'radis':
+            case 'redis':
                 createRedisClient().hget(session.from, session.key, function (err, data) {
                     if (err) {
                         console.log(err);

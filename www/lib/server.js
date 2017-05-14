@@ -5,7 +5,16 @@ import means from '../expand/means.js';
 function start(route,list) {
     function onRequst(req, res) {
         let pathname = url.parse(req.url).pathname;
+        console.log(req.url);
         let method = req.method.toLowerCase();
+        /**
+         * {
+         *  method: method,
+         *  req: req,
+         *   res: res,
+         *  ......
+         * }
+         */
         means(method,req,res,route,list,pathname);
         console.log("Request for " + pathname + " received.");
         //回复

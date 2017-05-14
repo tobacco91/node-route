@@ -52,7 +52,7 @@ var means = function means(method, req, res, route, list, pathname) {
                         (0, _session.set_session)({
                             from: 'track',
                             type: 'redis',
-                            key: number,
+                            key: req.number,
                             value: JSON.stringify({
                                 method: 'post',
                                 type: 'json',
@@ -66,7 +66,7 @@ var means = function means(method, req, res, route, list, pathname) {
                         (0, _session.set_session)({
                             from: 'track',
                             type: 'redis',
-                            key: number,
+                            key: req.number,
                             value: JSON.stringify({
                                 method: 'post',
                                 type: 'xml',

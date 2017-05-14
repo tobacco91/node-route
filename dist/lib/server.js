@@ -21,7 +21,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function start(route, list) {
     function onRequst(req, res) {
         var pathname = _url2.default.parse(req.url).pathname;
+        console.log(req.url);
         var method = req.method.toLowerCase();
+        /**
+         * {
+         *  method: method,
+         *  req: req,
+         *   res: res,
+         *  ......
+         * }
+         */
         (0, _means2.default)(method, req, res, route, list, pathname);
         console.log("Request for " + pathname + " received.");
         //回复
